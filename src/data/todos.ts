@@ -1,18 +1,18 @@
 const initialTodos = [
   {
-    id: crypto.randomUUID(),
+    id: "1",
     title: "First Todo",
     description: "hi",
     isCompleted: false,
   },
   {
-    id: crypto.randomUUID(),
+    id: "2",
     title: "Second Todo",
     description: "no hi",
     isCompleted: false,
   },
   {
-    id: crypto.randomUUID(),
+    id: "3",
     title: "Third Todo",
     description: "hiii",
     isCompleted: true,

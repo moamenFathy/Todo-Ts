@@ -8,9 +8,9 @@ import {
   ToggleButtonGroup,
   ToggleButton,
 } from "@mui/material";
-import Todo from "./Todo";
+import TodoProps from "./Todo";
 import { useEffect, useMemo, useState } from "react";
-import type { TodoType } from "../Types/types";
+import type { TodoType } from "../types/types";
 import initialTodos from "../data/todos";
 
 const getTodos = () => {
@@ -32,7 +32,7 @@ const TodoList = () => {
       ...prev,
       {
         id: crypto.randomUUID(),
-        title: title,
+        title: title.trim(),
         description: "",
         isCompleted: false,
       },
@@ -54,7 +54,7 @@ const TodoList = () => {
   }, [todos, filter]);
 
   return (
-    <Card style={{ width: 550 }}>
+    <Card sx={{ width: 550 }}>
       <CardContent>
         <Typography gutterBottom align="center" variant="h3" component="div">
           Todo
@@ -66,32 +66,30 @@ const TodoList = () => {
           onChange={(_, newFilter) => newFilter && setFilter(newFilter)}
           style={{ display: "flex", justifyContent: "center", marginBlock: 20 }}
         >
-          <ToggleButton value="all" onClick={() => setFilter("all")}>
+          <ToggleButton value="all">
             All
           </ToggleButton>
           <ToggleButton
             value="completed"
-            onClick={() => setFilter("completed")}
           >
             Completed
           </ToggleButton>
           <ToggleButton
             value="notCompleted"
-            onClick={() => setFilter("notCompleted")}
           >
             Not Completed
           </ToggleButton>
         </ToggleButtonGroup>
         {filteredTodos.map((todo) => (
-          <Todo key={todo.id} todo={todo} setTodos={setTodos} />
+          <TodoProps key={todo.id} todo={todo} setTodos={setTodos} />
         ))}
       </CardContent>
       <CardActions sx={{ display: "flex", padding: "16px" }}>
         <TextField
-          value={title}
           sx={{ width: "70%" }}
           label="Add Your Todo"
           variant="filled"
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
           onKeyDown={(e) => (e.key === "Enter" ? handleAdd(title) : null)}
         />
@@ -104,6 +102,11 @@ const TodoList = () => {
           Add
         </Button>
       </CardActions>
+      {title.length > 10 && (
+        <Typography variant="h6" color="error" sx={{ textAlign: "center"}}>
+          Title must be at least 10 characters long
+        </Typography>
+      )}
     </Card>
   );
 };

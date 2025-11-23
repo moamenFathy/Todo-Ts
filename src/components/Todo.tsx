@@ -3,19 +3,19 @@ import CheckIcon from '@mui/icons-material/Check';
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import type React from "react";
-import type { TodoType } from "../Types/types";
+import type { TodoType } from "../types/types";
 import CustomModal from "./CustomModal";
 import { useState } from "react";
 
-interface Todo {
+interface TodoProps {
   todo: TodoType;
   setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
 }
 
-const Todo = ({
+const TodoProps = ({
   todo: { id, title, description, isCompleted },
   setTodos,
-}: Todo) => {
+}: TodoProps) => {
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
@@ -76,6 +76,7 @@ const Todo = ({
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <IconButton
                 color="success"
+                aria-label="Mark todo as complete"
                 sx={{
                   border: "3px solid green",
                   bgcolor: isCompleted ? "green" : "white",
@@ -90,6 +91,7 @@ const Todo = ({
               </IconButton>
               <IconButton
                 color="primary"
+                aria-label="Edit todo"
                 sx={{
                   border: "3px solid #1976D2",
                   bgcolor: "white",
@@ -103,6 +105,7 @@ const Todo = ({
               </IconButton>
               <IconButton
                 color="error"
+                aria-label="Delete todo"
                 sx={{
                   border: "3px solid #D32F2F",
                   bgcolor: "white",
@@ -137,4 +140,4 @@ const Todo = ({
   );
 };
 
-export default Todo
+export default TodoProps

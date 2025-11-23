@@ -1,7 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
-import type { TodoType } from '../Types/types';
-import { useState } from 'react';
-import React from 'react';
+import type { TodoType } from '../types/types';
+import { useEffect, useState } from 'react';
 
 interface ModalProps {
   open: boolean;
@@ -19,8 +18,17 @@ const CustomModal = ({ open, modalTitle, todo, isForm = false, setModal, onEdit,
     description: todo.description
   });
 
+  useEffect(() => {
+    if (open) {
+      setNewData({
+        title: todo.title,
+        description: todo.description
+      });
+    }
+  }, [open, todo.title, todo.description]);
+
   const handleEditSubmit = () => {
-    onEdit?.({...todo, title: newData.title, description: newData.description});
+    onEdit?.({ ...todo, title: newData.title, description: newData.description });
     setModal(false);
   }
 
@@ -33,7 +41,7 @@ const CustomModal = ({ open, modalTitle, todo, isForm = false, setModal, onEdit,
     <Dialog open={open} fullWidth>
       <DialogTitle>{modalTitle}</DialogTitle>
       <DialogContent>
-        <form onSubmit={handleEditSubmit}>
+        <form onSubmit={(e) => { e.preventDefault(); handleEditSubmit(); }}>
           <TextField
             autoFocus
             required
@@ -63,7 +71,7 @@ const CustomModal = ({ open, modalTitle, todo, isForm = false, setModal, onEdit,
       </DialogContent>
       <DialogActions>
         <Button onClick={() => setModal(false)}>Cancel</Button>
-        <Button type="submit" variant="contained" onClick={handleEditSubmit}>
+        <Button type="submit" variant="contained">
           Edit
         </Button>
       </DialogActions>
