@@ -63,7 +63,7 @@ const CustomModal = ({ open, modalTitle, todo, isForm = false, setModal, onEdit,
       </DialogContent>
       <DialogActions>
         <Button onClick={() => setModal(false)}>Cancel</Button>
-        <Button type="submit" form="subscription-form" onClick={handleEditSubmit}>
+        <Button type="submit" variant="contained" onClick={handleEditSubmit}>
           Edit
         </Button>
       </DialogActions>
@@ -72,13 +72,14 @@ const CustomModal = ({ open, modalTitle, todo, isForm = false, setModal, onEdit,
     <Dialog open={open} fullWidth>
       <DialogTitle>{modalTitle}</DialogTitle>
       <DialogActions>
-        <Button onClick={() => setModal(false)}>Cancel</Button>
-        <Button 
-          type="submit" 
-          form="subscription-form" 
-          onClick={() => handleDeleteSubmit(todo.id)} 
-          onKeyDown={(e) => e.key === "Enter" ? handleDeleteSubmit(todo.id) : null}
-          >
+        <Button variant="outlined" onClick={() => setModal(false)}>
+          Cancel
+        </Button>
+        <Button
+          type="submit"
+          onClick={() => handleDeleteSubmit(todo.id)}
+          variant="contained"
+        >
           Delete
         </Button>
       </DialogActions>
