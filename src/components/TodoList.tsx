@@ -66,19 +66,9 @@ const TodoList = () => {
           onChange={(_, newFilter) => newFilter && setFilter(newFilter)}
           style={{ display: "flex", justifyContent: "center", marginBlock: 20 }}
         >
-          <ToggleButton value="all">
-            All
-          </ToggleButton>
-          <ToggleButton
-            value="completed"
-          >
-            Completed
-          </ToggleButton>
-          <ToggleButton
-            value="notCompleted"
-          >
-            Not Completed
-          </ToggleButton>
+          <ToggleButton value="all">All</ToggleButton>
+          <ToggleButton value="completed">Completed</ToggleButton>
+          <ToggleButton value="notCompleted">Not Completed</ToggleButton>
         </ToggleButtonGroup>
         {filteredTodos.map((todo) => (
           <TodoProps key={todo.id} todo={todo} setTodos={setTodos} />
@@ -96,14 +86,14 @@ const TodoList = () => {
         <Button
           sx={{ width: "30%", height: "-webkit-fill-available" }}
           variant="contained"
-          disabled={!title}
+          disabled={!title || title.length > 10}
           onClick={() => handleAdd(title)}
         >
           Add
         </Button>
       </CardActions>
       {title.length > 10 && (
-        <Typography variant="h6" color="error" sx={{ textAlign: "center"}}>
+        <Typography variant="h6" color="error" sx={{ textAlign: "center" }}>
           Title must be at least 10 characters long
         </Typography>
       )}

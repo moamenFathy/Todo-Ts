@@ -60,7 +60,7 @@ const TodoProps = ({
               gap: 4,
             }}
           >
-            <Stack>
+            <Stack sx={{ overflow: "auto" }}>
               <Typography
                 component="div"
                 variant="h5"

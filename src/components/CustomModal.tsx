@@ -41,7 +41,12 @@ const CustomModal = ({ open, modalTitle, todo, isForm = false, setModal, onEdit,
     <Dialog open={open} fullWidth>
       <DialogTitle>{modalTitle}</DialogTitle>
       <DialogContent>
-        <form onSubmit={(e) => { e.preventDefault(); handleEditSubmit(); }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleEditSubmit();
+          }}
+        >
           <TextField
             autoFocus
             required
@@ -71,7 +76,7 @@ const CustomModal = ({ open, modalTitle, todo, isForm = false, setModal, onEdit,
       </DialogContent>
       <DialogActions>
         <Button onClick={() => setModal(false)}>Cancel</Button>
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="contained" onClick={handleEditSubmit}>
           Edit
         </Button>
       </DialogActions>
