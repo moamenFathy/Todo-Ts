@@ -6,6 +6,7 @@ import type React from "react";
 import type { TodoType } from "../types/types";
 import CustomModal from "./CustomModal";
 import { useState } from "react";
+import { useTodos } from "../context/TodosProvider";
 
 interface TodoProps {
   todo: TodoType;
@@ -14,8 +15,8 @@ interface TodoProps {
 
 const TodoProps = ({
   todo: { id, title, description, isCompleted },
-  setTodos,
 }: TodoProps) => {
+  const { setTodos } = useTodos();
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 

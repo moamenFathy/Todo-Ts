@@ -10,16 +10,10 @@ import {
 } from "@mui/material";
 import TodoProps from "./Todo";
 import { useEffect, useMemo, useState } from "react";
-import type { TodoType } from "../types/types";
-import initialTodos from "../data/todos";
-
-const getTodos = () => {
-  const saved = localStorage.getItem("todos");
-  return saved ? JSON.parse(saved) : initialTodos;
-};
+import { useTodos } from "../context/TodosProvider";
 
 const TodoList = () => {
-  const [todos, setTodos] = useState<TodoType[]>(getTodos);
+  const { todos, setTodos } = useTodos();
   const [title, setTitle] = useState("");
   const [filter, setFilter] = useState("all");
 
