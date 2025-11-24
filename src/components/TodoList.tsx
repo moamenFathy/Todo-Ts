@@ -75,12 +75,14 @@ const TodoList = () => {
           variant="filled"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          onKeyDown={(e) => (e.key === "Enter" ? handleAdd(title) : null)}
+          onKeyDown={(e) =>
+            e.key === "Enter" && title.length <= 10 ? handleAdd(title) : null
+          }
         />
         <Button
           sx={{ width: "30%", height: "-webkit-fill-available" }}
           variant="contained"
-          disabled={!title || title.length > 10}
+          disabled={!title || title.length >= 10}
           onClick={() => handleAdd(title)}
         >
           Add
@@ -88,7 +90,7 @@ const TodoList = () => {
       </CardActions>
       {title.length > 10 && (
         <Typography variant="h6" color="error" sx={{ textAlign: "center" }}>
-          Title must be at least 10 characters long
+          Max character to enter is 10
         </Typography>
       )}
     </Card>
