@@ -3,7 +3,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import type React from "react";
-import type { TodoType } from "../types/types";
+import type { TodoType } from "../Types/types";
 import CustomModal from "./CustomModal";
 import { useState } from "react";
 import { useTodos } from "../context/TodosProvider";

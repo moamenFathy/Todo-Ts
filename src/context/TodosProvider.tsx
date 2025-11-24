@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import type { TodoType } from "../types/types";
+import type { TodoType } from "../Types/types";
 import initialTodos from "../data/todos";
 
 interface TodosContextProps {

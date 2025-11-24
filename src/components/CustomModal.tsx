@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
-import type { TodoType } from '../types/types';
+import type { TodoType } from "../Types/types";
 import { useEffect, useState } from 'react';
 
 interface ModalProps {
